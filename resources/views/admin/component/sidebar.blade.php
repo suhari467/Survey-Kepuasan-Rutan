@@ -2,7 +2,11 @@
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="{{ url('/') }}" class="brand-link">
-      <img src="{{ asset('assets/img/logo.png') }}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+      @if(session()->has('logo'))
+      <img src="{{ asset('storage/instansi').'/'.session()->get('logo') }}" alt="Logo Instansi" class="brand-image img-circle elevation-3" style="opacity: .8">
+      @else
+      <img src="{{ asset('assets/img/logo.png') }}" alt="Logo Instansi" class="brand-image img-circle elevation-3" style="opacity: .8">
+      @endif
       <span class="brand-text font-weight-light">Survey Pelanggan</span>
     </a>
 
@@ -63,10 +67,26 @@
           @endif
           @if(auth()->user()->role->name == 'admin')
           <li class="nav-item">
-            <a href="{{ url('/riwayat') }}" class="nav-link {{ $slug=="riwayat" ? 'active' : ''}}">
-              <i class="nav-icon fas fa-file"></i>
+            <a href="{{ url('/laporan') }}" class="nav-link {{ $slug=="laporan" ? 'active' : ''}}">
+              <i class="nav-icon fas fa-file-export"></i>
               <p>
-                Data Riwayat
+                Laporan
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="{{ url('/layanan') }}" class="nav-link {{ $slug=="layanan" ? 'active' : ''}}">
+              <i class="nav-icon fas fa-bars"></i>
+              <p>
+                Layanan
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="{{ url('/question') }}" class="nav-link {{ $slug=="question" ? 'active' : ''}}">
+              <i class="nav-icon fas fa-question"></i>
+              <p>
+                Pertanyaan
               </p>
             </a>
           </li>
@@ -74,7 +94,7 @@
             <a href="#" class="nav-link {{ Request::is('setting/*') ? 'active' : '' }}">
               <i class="nav-icon fas fa-table"></i>
               <p>
-                Khusus Admin
+                Pengaturan
                 <i class="fas fa-angle-left right"></i>
               </p>
             </a>
@@ -82,7 +102,13 @@
               <li class="nav-item">
                 <a href="{{ url('/setting/user') }}" class="nav-link {{ $slug=="user" ? 'active' : ''}}">
                   <i class="nav-icon fa fa-users"></i>
-                  <p>Data Pengguna</p>
+                  <p>Pengaturan Pengguna</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{ url('/setting/instansi') }}" class="nav-link {{ $slug=="instansi" ? 'active' : ''}}">
+                  <i class="nav-icon fa fa-building"></i>
+                  <p>Pengaturan Instansi</p>
                 </a>
               </li>
             </ul>

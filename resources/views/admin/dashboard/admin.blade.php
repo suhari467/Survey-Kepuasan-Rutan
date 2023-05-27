@@ -42,7 +42,7 @@
                     <span class="info-box-text">Total Arsip</span>
                     <span class="info-box-number">
                       <h4>
-                        <b>{{ $count_arsip }}</b>
+                        <b></b>
                       </h4>
                     </span>
                   </div>
@@ -59,7 +59,7 @@
                     <span class="info-box-text">Total Search Riwayat</span>
                     <span class="info-box-number">
                       <h4>
-                        <b>{{ $count_riwayat }}</b>
+                        <b></b>
                       </h4>
                     </span>
                   </div>
@@ -76,7 +76,7 @@
                     <span class="info-box-text">Total Arsip Belum Tervalidasi</span>
                     <span class="info-box-number">
                       <h4>
-                        <b>{{ $count_status_no }}</b>
+                        <b></b>
                       </h4>
                     </span>
                   </div>
@@ -93,7 +93,7 @@
                     <span class="info-box-text">Total Pengguna</span>
                     <span class="info-box-number">
                       <h4>
-                        <b>{{ $count_user }}</b>
+                        <b></b>
                       </h4>
                     </span>
                   </div>
