@@ -32,7 +32,7 @@
               @if (session()->has('error'))
                 <div id="session" data-type="error" data-session=" {{ session('error') }}"></div>
               @endif
-              <a href="{{ url('setting/instansi/create') }}" class="btn btn-primary mt-2 mb-2">Tambah Instansi</a>            
+              <a href="{{ url('setting/instansi/create') }}" class="btn btn-primary mt-2 mb-2"><span class="fas fa-plus"></span> Tambah Instansi</a>            
             </div>
             <!-- /.card-header -->
             <div class="card-body">

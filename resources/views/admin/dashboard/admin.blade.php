@@ -106,6 +106,33 @@
           <!-- /.row -->
           </div>
         </div>
+        <div class="card card-primary">
+          <div class="card-header">
+              <h5>Tools Survey</h5>
+          </div>
+          <div class="card-body">
+            <div class="row">
+              <div class="col-sm-3 col-sm-6 col-12">
+                <div class="info-box">
+                  <span class="info-box-icon bg-info"><i class="fa fa-th"></i></span>
+    
+                  <div class="info-box-content">
+                    <span class="info-box-text">Antarmuka Survey</span>
+                    <span class="info-box-number">
+                      <h4>
+                        <a href="{{ url('antarmuka/auth') }}" class="btn btn-primary" target="_blank">Klik disini</a>
+                      </h4>
+                    </span>
+                  </div>
+                  <!-- /.info-box-content -->
+                </div>
+                <!-- /.info-box -->
+              </div>
+              <!-- /.col -->
+            </div>
+          <!-- /.row -->
+          </div>
+        </div>
       </div>
     <!-- /.container-fluid -->
   </section>

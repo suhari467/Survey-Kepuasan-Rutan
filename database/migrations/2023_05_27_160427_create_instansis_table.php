@@ -20,7 +20,7 @@ class CreateInstansisTable extends Migration
             $table->text('informasi_instansi')->nullable();
             $table->string('no_telp')->nullable();
             $table->string('email');
-            $table->string('logo');
+            $table->string('logo')->nullable();
             $table->string('ukuran_logo');
             $table->integer('status');
             $table->timestamps();

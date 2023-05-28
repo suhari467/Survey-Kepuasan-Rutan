@@ -3,7 +3,7 @@
     <!-- Brand Logo -->
     <a href="{{ url('/') }}" class="brand-link">
       @if(session()->has('logo'))
-      <img src="{{ asset('storage/instansi').'/'.session()->get('logo') }}" alt="Logo Instansi" class="brand-image img-circle elevation-3" style="opacity: .8">
+      <img src="{{ asset('storage/instansi').'/'.session()->get('logo') }}" alt="Logo Instansi" class="brand-image elevation-3" style="opacity: .8">
       @else
       <img src="{{ asset('assets/img/logo.png') }}" alt="Logo Instansi" class="brand-image img-circle elevation-3" style="opacity: .8">
       @endif
@@ -51,21 +51,6 @@
               </p>
             </a>
           </li>
-          @if(auth()->user()->role->name == 'user')
-          <li class="nav-item">
-            <a href="{{ url('/arsip') }}" class="nav-link {{ $slug=="arsip" ? 'active' : ''}}">
-              <i class="nav-icon far fas fa-th"></i>
-              <p>Data Arsip</p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="{{ url('/uraian') }}" class="nav-link {{ $slug=="uraian" ? 'active' : ''}}">
-              <i class="nav-icon far fas fa-list"></i>
-              <p>Data Uraian Arsip</p>
-            </a>
-          </li>
-          @endif
-          @if(auth()->user()->role->name == 'admin')
           <li class="nav-item">
             <a href="{{ url('/laporan') }}" class="nav-link {{ $slug=="laporan" ? 'active' : ''}}">
               <i class="nav-icon fas fa-file-export"></i>
@@ -75,7 +60,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="{{ url('/layanan') }}" class="nav-link {{ $slug=="layanan" ? 'active' : ''}}">
+            <a href="{{ url('/layanan') }}" class="nav-link {{ $slug=="service" ? 'active' : ''}}">
               <i class="nav-icon fas fa-bars"></i>
               <p>
                 Layanan
@@ -83,13 +68,14 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="{{ url('/question') }}" class="nav-link {{ $slug=="question" ? 'active' : ''}}">
+            <a href="{{ url('/pertanyaan') }}" class="nav-link {{ $slug=="question" ? 'active' : ''}}">
               <i class="nav-icon fas fa-question"></i>
               <p>
                 Pertanyaan
               </p>
             </a>
           </li>
+          @if(auth()->user()->role->name == 'admin')
           <li class="nav-item {{ Request::is('setting/*') ? 'menu-is-opening menu-open' : '' }}">
             <a href="#" class="nav-link {{ Request::is('setting/*') ? 'active' : '' }}">
               <i class="nav-icon fas fa-table"></i>
@@ -109,6 +95,12 @@
                 <a href="{{ url('/setting/instansi') }}" class="nav-link {{ $slug=="instansi" ? 'active' : ''}}">
                   <i class="nav-icon fa fa-building"></i>
                   <p>Pengaturan Instansi</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{ url('/setting/pin') }}" class="nav-link {{ $slug=="pin" ? 'active' : ''}}">
+                  <i class="nav-icon fa fa-lock"></i>
+                  <p>Pengaturan PIN</p>
                 </a>
               </li>
             </ul>

@@ -11,9 +11,9 @@ class Survey extends Model
 
     protected $guarded = ['id'];
 
-    public function jenis()
+    public function feedback()
 	{
-		$jenis = [
+		$feedback = [
 			[
 				'id' => 1,
 				'name' => 'Kurang'
@@ -28,7 +28,7 @@ class Survey extends Model
 			]
 		];
 
-		return $jenis;
+		return $feedback;
 	}
 
     public function service()

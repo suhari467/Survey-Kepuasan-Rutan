@@ -17,8 +17,8 @@ class CreateSurveysTable extends Migration
             $table->id();
             $table->foreignId('service_id');
             $table->foreignId('question_id');
-            $table->integer('jenis');
-            $table->text('kritik');
+            $table->integer('feedback');
+            $table->text('kritik')->nullable();
             $table->timestamps();
         });
     }

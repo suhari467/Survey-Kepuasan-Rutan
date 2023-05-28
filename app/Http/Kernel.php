@@ -44,6 +44,15 @@ class Kernel extends HttpKernel
             'throttle:api',
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
         ],
+
+        'pinMode' => [
+            \App\Http\Middleware\PinMode::class
+        ],
+
+        'admin' => [
+            \App\Http\Middleware\Authenticate::class,
+            \App\Http\Middleware\AdminRole::class
+        ],
     ];
 
     /**
@@ -63,5 +72,7 @@ class Kernel extends HttpKernel
         'signed' => \Illuminate\Routing\Middleware\ValidateSignature::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
+        'pinMode' => \App\Http\Middleware\PinMode::class,
+        'admin' => \App\Http\Middleware\AdminRole::class,
     ];
 }

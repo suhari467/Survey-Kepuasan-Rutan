@@ -3,7 +3,11 @@
 @section('content')
 <div class="card card-outline card-primary">
     <div class="card-header text-center">
-      <a href="{{ url('/') }}" class="h3"><b>Aplikasi Survey Kepuasan Pelanggan</b> </a>
+      <a href="{{ url('/') }}" class="h3"><b>Survey Kepuasan Pelanggan</b> </a><br>
+      <img src="{{ asset('storage/instansi').'/'.$instansi->logo }}" alt="{{ $instansi->logo }}" width="100" class="my-2">
+      <h3>
+        {{ $instansi->nama_instansi }}
+      </h3>
     </div>
     <div class="card-body">
       <p class="login-box-msg">Reset your password to login your account</p>
