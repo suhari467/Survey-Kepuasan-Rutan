@@ -24,6 +24,11 @@
   
   <!-- jQuery -->
   <script src="{{ asset('assets/plugins/jquery/jquery.min.js') }}"></script>
+  
+  <!-- Date Range Picker -->
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
 </head>
 <body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed">
 <div class="wrapper">
@@ -76,6 +81,8 @@
 <script src="{{ asset('assets/js/adminlte.min.js') }}"></script>
 <!-- Trix Editor -->
 <script type="text/javascript" src="{{ asset('assets/js/trix.js') }}"></script>
+<!-- Chart Js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.js"></script>
 
 <script type="text/javascript">
 $("#logout").on("click", function() {

@@ -13,6 +13,7 @@ use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\SurveyController;
 use App\Http\Controllers\PinController;
+use App\Http\Controllers\LaporanController;
 
 //Models
 use App\Models\Action;
@@ -78,15 +79,22 @@ Route::resource('/layanan', ServiceController::class)->parameters([
 ])->middleware('auth');
 // End Service Controller
 
-// Service Controller
+// Pertanyaan Controller
 Route::resource('/pertanyaan', QuestionController::class)->parameters([
     'pertanyaan' => 'question'
 ])->middleware('auth');
-// End Service Controller
+// End Pertanyaan Controller
+
+// Laporan Controller
+Route::resource('/laporan', LaporanController::class)->middleware('auth');
+Route::post('/get/layanan/laporan', [LaporanController::class, 'getLayanan'])->middleware('auth')->name('get_layanan_laporan');
+Route::post('/cari/laporan', [LaporanController::class, 'cariLaporan'])->middleware('auth')->name('cari_laporan');
+// End Laporan Controller
 
 // Survey Controller
 Route::get('/antarmuka/auth', [SurveyController::class, 'auth']);
 Route::post('/antarmuka/auth', [SurveyController::class, 'checkPin'])->name('survey.auth');
+Route::get('/get/kategori', [SurveyController::class, 'getKategori'])->middleware('auth');
 
 Route::middleware(['pinMode'])->group(function(){
     Route::get('/antarmuka/layanan', [SurveyController::class, 'layanan']);

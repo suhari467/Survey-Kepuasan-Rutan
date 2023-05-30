@@ -127,4 +127,11 @@ class SurveyController extends Controller
             return redirect('antarmuka/auth')->with('error', 'masukkan pin untuk kembali masuk');
         }
     }
+
+    public function getKategori()
+    {
+        $kategori = Survey::feedback();
+
+        return json_encode($kategori);
+    }
 }
