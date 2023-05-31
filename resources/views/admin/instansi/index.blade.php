@@ -55,7 +55,7 @@
                     <td>{{ $loop->iteration }}</td>
                     <td>
                       @if ($instansi->logo)
-                        <img src="{{ url('instansi') }}/{{ $instansi->logo }}" alt="{{ $instansi->nama_instansi }}" width="100">
+                        <img src="{{ url('storage/instansi') }}/{{ $instansi->logo }}" alt="{{ $instansi->nama_instansi }}" width="100">
                       @else
                         <img src="{{ url('assets/img/blank-profile.jpg') }}" alt="blank-profile" width="100">
                       @endif

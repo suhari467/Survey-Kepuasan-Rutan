@@ -11,7 +11,7 @@ class Instansi extends Model
 
     protected $guarded = ['id'];
 
-    public function status()
+    public static function status()
 	{
 		$status = [
 			[

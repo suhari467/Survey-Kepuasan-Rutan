@@ -11,7 +11,7 @@ class Survey extends Model
 
     protected $guarded = ['id'];
 
-    public function feedback()
+    public static function feedback()
 	{
 		$feedback = [
 			[
