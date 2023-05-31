@@ -28,7 +28,7 @@
       <form action="{{ route('survey.auth') }}" method="post">
         @csrf
         <div class="input-group mb-3">
-          <input type="number" name="pin" id="pin" class="form-control @error('pin') is-invalid @enderror" placeholder="PIN Authentication">
+          <input type="password" name="pin" id="pin" class="form-control @error('pin') is-invalid @enderror" placeholder="PIN Authentication">
             <div class="input-group-append">
               <div class="input-group-text">
                 <span class="fas fa-lock"></span>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Service;
 use App\Models\Question;
 use App\Models\Survey;
+use App\Models\Instansi;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -14,11 +15,13 @@ class LaporanController extends Controller
     public function index()
     {
         $questions = Question::orderBy('created_at', 'desc')->get();
+        $instansi = Instansi::where('status', 1)->first();
 
         $data = [
             'title' => 'Data Laporan',
             'slug' => 'laporan',
             'questions' => $questions,
+            'instansi' => $instansi,
         ];
 
         return view('laporan.index', $data);

@@ -30,7 +30,7 @@ use App\Models\Action;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('/login')->with('success', 'Silahkan login terlebih dahulu');
 });
 
 // Login Controller Route

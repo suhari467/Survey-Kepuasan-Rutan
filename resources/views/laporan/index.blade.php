@@ -84,10 +84,34 @@
       </div>
       <div class="row">
         <div class="col-12">
+          <div class="card" id="kop-surat">
+            <div class="card-body">
+              <div class="row d-flex justify-content-center">
+                <img src="{{ url('storage/instansi') }}/{{ $instansi->logo }}" alt="{{ $instansi->nama_instansi }}" height="130">
+                <div class="col ml-3">
+                  <h2>Survey Kepuasan Pelanggan</h2>
+                  <h1><b>{{ $instansi->nama_instansi }}</b></h1>
+                  <h5>{{ $instansi->alamat_instansi }}</h5>
+                </div>
+              </div>
+              <hr>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
           <div class="card" id="card-laporan">
             <!-- /.card-header -->
             <div class="card-body">
-              <h4>LAPORAN PRESENTASI KEPUASAN</h4>
+              <div class="row">
+                <div class="col-6">
+                  <h4>LAPORAN PRESENTASI KEPUASAN</h4>
+                </div>
+                <div class="col-6 d-flex justify-content-end">
+                  <button type="button" id="button-laporan" class="btn btn-primary" onclick="printLaporan()" ><i class="fas fa-print"></i> Print Laporan</button>
+                </div>
+              </div>
               <hr>
               <table style="width: 100%">
                 <tr>
@@ -111,7 +135,7 @@
                   <td style="width: 80%" id="laporan_responden"></td>
                 </tr>
               </table>
-              <div class="row mt-3 gx-2">
+              <div class="row my-3 gx-2">
                 <div class="col-6">
                   <canvas id="doughnut-chart"></canvas>
                 </div>
@@ -148,7 +172,14 @@
             <div class="card" id="card-kritik">
               <!-- /.card-header -->
               <div class="card-body">
-                <h4>LAPORAN KRITIK</h4>
+                <div class="row">
+                  <div class="col-6">
+                    <h4>LAPORAN KRITIK</h4>
+                  </div>
+                  <div class="col-6 d-flex justify-content-end">
+                    <button type="button" id="button-kritik" class="btn btn-primary" onclick="printKritik()" ><i class="fas fa-print"></i> Print Laporan Kritik</button>
+                  </div>
+                </div>
                 <hr>
                 <table style="width: 100%">
                   <tr>
@@ -232,8 +263,7 @@
     })
   }
 
-  
-
+  $('#kop-surat').hide();
   $('#card-laporan').hide();
   $('#card-kritik').hide();
   
@@ -332,8 +362,6 @@
           $("#laporan_kritik_layanan").text(layanan);
           $("#laporan_kritik_pertanyaan").text(pertanyaan);
           $("#laporan_kritik_responden").text(responden_kritik);
-
-          console.log(data.laporan);
 
           if(data.laporan){
             data.laporan.forEach(items => {
@@ -524,5 +552,81 @@
 			$('#tanggal_awal').val(start.format('YYYY-MM-DD'));
 			$('#tanggal_akhir').val(end.format('YYYY-MM-DD'));
 	});
+
+  function printLaporan() {
+    var styles = `
+      @media print {
+        body {
+          visibility: hidden;
+        }
+        #card-laporan {
+          visibility: visible;
+          left: 0;
+          top: 0;
+        }
+        #kop-surat {
+          visibility: visible;
+        }
+        #button-laporan {
+          display: none;
+        }
+      }
+    `
+
+    var styleSheet = document.createElement("style")
+    styleSheet.innerText = styles
+    document.head.appendChild(styleSheet)
+
+    $('#card-filter').hide();
+    $('#card-kritik').hide();
+
+    $('#kop-surat').show();
+
+    window.print();
+
+    window.onafterprint = function(){
+      $('#kop-surat').hide();
+      $('#card-filter').show();
+      $('#card-kritik').show();
+    }
+  }
+
+  function printKritik() {
+    var styles = `
+      @media print {
+        body {
+          visibility: hidden;
+        }
+        #card-kritik {
+          visibility: visible;
+          left: 0;
+          top: 0;
+        }
+        #kop-surat {
+          visibility: visible;
+        }
+        #button-kritik {
+          display: none;
+        }
+      }
+    `
+
+    var styleSheet = document.createElement("style")
+    styleSheet.innerText = styles
+    document.head.appendChild(styleSheet)
+
+    $('#card-filter').hide();
+    $('#card-laporan').hide();
+
+    $('#kop-surat').show();
+
+    window.print();
+
+    window.onafterprint = function(){
+      $('#kop-surat').hide();
+      $('#card-filter').show();
+      $('#card-laporan').show();
+    }
+  }
 </script>
 @endsection
