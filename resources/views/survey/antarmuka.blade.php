@@ -22,6 +22,7 @@
   <h1 class="mt-4 text-center"><b>{{ $question->pertanyaan }}</b></h1>
   <hr>
   </div>
+  <meta name="csrf-token" content="{{ csrf_token() }}">
   @foreach($feedback as $use)
     <div class="col-lg-4 col-12">
       <!-- small card -->
@@ -171,8 +172,10 @@
       $.ajax({
         url: "{{ route('survey.store') }}",
         method: 'post',
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
         data: {
-          _token: '{{ csrf_token() }}',
           question_id: question_id,
           service_id: service_id,
           kritik: kritik,
@@ -186,10 +189,17 @@
 
           SwAlt(pesan, tipe, judul);
 
+        }
+      }).fail(function(){
+          var tipe = 'error';
+          var pesan = 'Survey gagal disimpan, silahkan reload halaman atau buat akses kembali';
+          var judul = tipe=='success' ? 'Berhasil' : 'Gagal';
+          SwAlt(pesan, tipe, judul);
+
+      }).always(function() {
           $('#modal-kritik-'+feedback).modal('hide');
           $('#kritik-'+feedback).val(null);
           $("#overlay").remove();
-        }
       });
     }
   });

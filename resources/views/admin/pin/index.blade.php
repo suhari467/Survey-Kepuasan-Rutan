@@ -43,11 +43,14 @@
                 <div class="form-group mt-3">
                   <input type="numeric" class="form-control" name="pin" id="pin" placeholder="Masukkan PIN, minimal 6 angka" required>
                 </div>
-                <button type="button" class="btn btn-warning btn-block ganti-item" type="button" name="ganti-submit">Ganti PIN</button>
-                </form>
+                <button type="button" class="btn btn-warning btn-block ganti-item" type="button" name="ganti-submit">Ganti PIN</button>  
+              </form>
               </p>
             </div>
             <!-- /.card-body -->
+            <div class="card-footer">
+              <a href="{{ url('antarmuka/auth') }}" class="btn btn-primary btn-block" target="_blank">Buka Tampilan Antarmuka</a>
+            </div>
           </div>
           <!-- /.card -->
         </div>

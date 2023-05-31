@@ -493,7 +493,7 @@
 	}
 
   var start = moment();
-	var end = moment().subtract(29, 'days');
+	var end = moment();
 
   $('#range_tanggal').daterangepicker({
 		buttonClasses: 'm-btn btn',

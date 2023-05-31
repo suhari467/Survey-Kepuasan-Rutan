@@ -99,7 +99,7 @@ Route::get('/get/kategori', [SurveyController::class, 'getKategori'])->middlewar
 Route::middleware(['pinMode'])->group(function(){
     Route::get('/antarmuka/layanan', [SurveyController::class, 'layanan']);
     Route::get('/antarmuka/pertanyaan/layanan', [SurveyController::class, 'getPertanyaan']);
-    Route::post('/antarmuka/survey', [SurveyController::class, 'prosesLayanan'])->name('survey.layanan');
+    Route::match(['get', 'post'], '/antarmuka/survey', [SurveyController::class, 'prosesLayanan'])->name('survey.layanan');
     Route::post('/survey', [SurveyController::class, 'storeSurvey'])->name('survey.store');
     Route::post('/antarmuka/keluar', [SurveyController::class, 'signOut']);
 });
