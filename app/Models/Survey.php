@@ -15,16 +15,16 @@ class Survey extends Model
 	{
 		$feedback = [
 			[
-				'id' => 1,
-				'name' => 'Cukup Puas'
+				'id' => 3,
+				'name' => 'Sangat Puas'
 			],
 			[
 				'id' => 2,
 				'name' => 'Puas'
 			],
 			[
-				'id' => 3,
-				'name' => 'Sangat Puas'
+				'id' => 1,
+				'name' => 'Cukup Puas'
 			]
 		];
 

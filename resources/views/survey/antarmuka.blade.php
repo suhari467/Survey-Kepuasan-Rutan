@@ -21,10 +21,11 @@
   </h3>
   <h1 class="mt-4 text-center"><b>{{ $question->pertanyaan }}</b></h1>
   <hr>
+  <h4 class="mt-4 text-center"><b> Silahkan pilih salah satu dibawah ini </b></h4>
   </div>
   <meta name="csrf-token" content="{{ csrf_token() }}">
   @foreach($feedback as $use)
-    <div class="col-lg-4 col-12">
+    <div class="col-lg-4 col-12 text-center">
       <!-- small card -->
       @if ($use['id'] == '1')
         <div class="small-box bg-warning" id="{{ $use['id'] }}" id="survey-{{ $use['id'] }}" data-id-survey="{{ $use['id'] }}" data-toggle="modal" data-target="#modal-kritik-{{ $use['id'] }}">
@@ -45,6 +46,7 @@
               </h3>
             </div>
         </div>
+        <h5> <b>{{ $use['name'] }} </b> </h5>
     </div>
   @endforeach
   </div>
