@@ -12,7 +12,6 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\SurveyController;
-use App\Http\Controllers\PinController;
 use App\Http\Controllers\LaporanController;
 
 //Models
@@ -58,11 +57,6 @@ Route::middleware(['admin'])->group(function(){
     Route::get('/setting/user/{user}/password', [UserController::class, 'password']);
     Route::put('/setting/user/{user}/password', [UserController::class, 'password_verification']);
     // End User Controller
-
-    // PIN Controller
-    Route::get('/setting/pin', [PinController::class, 'index'])->middleware('auth');
-    Route::post('/setting/pin/update', [PinController::class, 'update'])->middleware('auth');
-    // End PIN Controller
 });
 
 // Profile Controller
@@ -87,22 +81,15 @@ Route::resource('/pertanyaan', QuestionController::class)->parameters([
 
 // Laporan Controller
 Route::resource('/laporan', LaporanController::class)->middleware('auth');
-Route::post('/get/layanan/laporan', [LaporanController::class, 'getLayanan'])->middleware('auth')->name('get_layanan_laporan');
 Route::post('/cari/laporan', [LaporanController::class, 'cariLaporan'])->middleware('auth')->name('cari_laporan');
 // End Laporan Controller
 
 // Survey Controller
-Route::get('/antarmuka/auth', [SurveyController::class, 'auth']);
-Route::post('/antarmuka/auth', [SurveyController::class, 'checkPin'])->name('survey.auth');
 Route::get('/get/kategori', [SurveyController::class, 'getKategori'])->middleware('auth');
-
-Route::middleware(['pinMode'])->group(function(){
-    Route::get('/antarmuka/layanan', [SurveyController::class, 'layanan']);
-    Route::get('/antarmuka/pertanyaan/layanan', [SurveyController::class, 'getPertanyaan']);
-    Route::match(['get', 'post'], '/antarmuka/survey', [SurveyController::class, 'prosesLayanan'])->name('survey.layanan');
-    Route::post('/survey', [SurveyController::class, 'storeSurvey'])->name('survey.store');
-    Route::post('/antarmuka/keluar', [SurveyController::class, 'signOut']);
-});
+Route::get('/antarmuka/layanan', [SurveyController::class, 'layanan']);
+Route::match(['get', 'post'], '/antarmuka/survey', [SurveyController::class, 'prosesLayanan'])->name('survey.layanan');
+Route::post('/survey', [SurveyController::class, 'storeSurvey'])->name('survey.store');
+Route::post('/antarmuka/keluar', [SurveyController::class, 'signOut']);
 // End Survey Controller
 
 // Aktivation Route

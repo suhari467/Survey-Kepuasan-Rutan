@@ -15,47 +15,34 @@ class LaporanController extends Controller
     public function index()
     {
         $questions = Question::orderBy('created_at', 'desc')->get();
+        $services = Service::orderBy('created_at', 'desc')->get();
         $instansi = Instansi::where('status', 1)->first();
 
         $data = [
             'title' => 'Data Laporan',
             'slug' => 'laporan',
             'questions' => $questions,
+            'services' => $services,
             'instansi' => $instansi,
         ];
 
         return view('laporan.index', $data);
     }
 
-    public function getLayanan(Request $request)
-    {
-        $validate = $request->validate([
-            'question_id' => 'required|numeric'
-        ]);
-
-        $question_id = $request->question_id;
-
-        $question = Question::where('id', $question_id)->first();
-        $service = Service::where('id', $question->service_id)->first();
-
-        $data = [
-            'service' => $service
-        ];
-
-        return json_encode($data);
-    }
-
     public function cariLaporan(Request $request)
     {
         $validate = $request->validate([
             'question_id' => 'required|numeric',
+            'service_id' => 'required|numeric',
             'tanggal_awal' => 'required|date',
             'tanggal_akhir' => 'required|date'
         ]);
 
         $question_id = $validate['question_id'];
+        $service_id = $validate['service_id'];
+
         $question = Question::where('id', $question_id)->first();
-        $service_id = $question->service->id;
+        $service = Service::where('id', $service_id)->first();
 
         $tanggal_awal = $validate['tanggal_awal'];
         $tanggal_akhir = $validate['tanggal_akhir'];
@@ -185,6 +172,7 @@ class LaporanController extends Controller
 
         $data = [
             'question' => $question,
+            'service' => $service,
             'tanggal_awal' => $tanggal_awal,
             'tanggal_akhir' => $tanggal_akhir,
             'count_survey' => $count_survey,

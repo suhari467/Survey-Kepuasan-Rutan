@@ -31,7 +31,11 @@
           @enderror
         </div>
         <div class="input-group mb-3">
-          <select name="pertanyaan_id" id="pertanyaan_id" class="form-control @error('pertanyaan_id') is-invalid @enderror" readonly="readonly"></select>
+          <select name="pertanyaan_id" id="pertanyaan_id" class="form-control @error('pertanyaan_id') is-invalid @enderror">
+            @foreach ($questions as $question)
+            <option value="{{ $question->id }}">{{ $question->pertanyaan }}</option>
+            @endforeach
+          </select>
           @error('pertanyaan_id')
               <div class="invalid-feedback">
                   {{ $message }}
@@ -48,44 +52,10 @@
     <!-- /.card-body -->
     <div class="card-footer text-center">
       <p class="mb-2">
-        <a href="{{ url('/antarmuka/auth') }}" class="text-center">Kembali ke menu sebelumnya</a>
+        <a href="{{ url('/dashboard') }}" class="text-center">Kembali ke menu sebelumnya</a>
       </p>
     </div>
     <!-- /.card-footer -->
   </div>
   <!-- /.card -->
-@endsection
-@section('javascript')
-<script type="text/javascript">
-  $(document).ready(function(){
-    $('#pertanyaan_id').attr("readonly", "readonly");
-        
-    $("#layanan_id").on("click", function(){
-      var layanan_id = $(this).val();
-      $('#pertanyaan_id').removeAttr("readonly", "readonly");
-      $('#pertanyaan_id option').each(function() {
-        $(this).remove();
-      });
-      getPertanyaan(layanan_id);
-    });
-  });
-
-  function getPertanyaan(layanan_id){
-    $.ajax({
-      url: '{{ url("antarmuka/pertanyaan/layanan") }}?layanan_id='+layanan_id,
-      type: 'get',
-      dataType: 'JSON',
-        success: function(response){
-          // console.log(response);
-          var html = '';
-          response.forEach(data => {
-            // console.log(data.id);
-            html += '<option value="' + data.id + '">' + data.pertanyaan + '</option>';
-          });
-
-          $("#pertanyaan_id").append(html);
-        }
-    })
-  }
-</script>
 @endsection

@@ -97,12 +97,6 @@
                   <p>Pengaturan Instansi</p>
                 </a>
               </li>
-              <li class="nav-item">
-                <a href="{{ url('/setting/pin') }}" class="nav-link {{ $slug=="pin" ? 'active' : ''}}">
-                  <i class="nav-icon fa fa-lock"></i>
-                  <p>Pengaturan PIN</p>
-                </a>
-              </li>
             </ul>
           </li>
           @endif

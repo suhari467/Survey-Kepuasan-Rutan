@@ -10,12 +10,6 @@ class Question extends Model
     use HasFactory;
 
     protected $guarded = ['id'];
-    protected $with = ['service'];
-
-    public function service()
-    {
-        return $this->belongsTo(Service::class);
-    }
 
     public function surveys() 
 	{

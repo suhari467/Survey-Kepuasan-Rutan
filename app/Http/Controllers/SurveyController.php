@@ -11,57 +11,20 @@ use Illuminate\Support\Facades\Storage;
 
 class SurveyController extends Controller
 {
-    public function auth()
-    {
-        $data = [
-            'instansi' => Instansi::where('status', 1)->first(),
-            'title' => 'Antarmuka Survey',
-            'slug' => 'survey'
-        ];
-
-        return view('survey.auth', $data);
-    }
-
-    public function checkPin(Request $request)
-    {
-        $validate = $request->validate([
-            'pin' => 'required|numeric|min:6'
-        ]);
-
-        $file = json_decode(Storage::disk('public')->get('pin.json'));
-        $data = collect($file)->first();
-        // dd($data->pin);
-
-        if($data->pin != $request->pin){
-            return redirect('antarmuka/auth')->with('error', 'PIN tidak cocok, silahkan coba lagi');
-        }else{
-            session([
-                'pin' => true,
-            ]);
-            return redirect('antarmuka/layanan');
-        }
-    }
-
     public function layanan()
     {
         $services = Service::orderBy('created_at', 'desc')->get();
+        $questions = Question::orderBy('created_at', 'desc')->get();
 
         $data = [
             'title' => 'Antarmuka Layanan',
             'slug' => 'survey',
-            'services' => $services
+            'instansi' => Instansi::where('status', 1)->first(),
+            'services' => $services,
+            'questions' => $questions
         ];
 
         return view('survey.layanan', $data);
-    }
-
-    public function getPertanyaan(Request $request)
-    {
-        $layanan_id = $request->layanan_id;
-
-        $questions = Question::where('service_id', $layanan_id)->get();
-
-        return json_encode($questions);
     }
 
     public function prosesLayanan(Request $request)
@@ -118,14 +81,7 @@ class SurveyController extends Controller
 
     public function signOut()
     {
-        if(session()->has('pin')){
-
-            session()->forget('pin');
-
-            return redirect('antarmuka/auth')->with('success', 'Session antarmuka berhasil keluar');
-        }else{
-            return redirect('antarmuka/auth')->with('error', 'masukkan pin untuk kembali masuk');
-        }
+        return redirect('antarmuka/layanan')->with('success', 'Silahkan masukkan layanan dan pertanyaan');
     }
 
     public function getKategori()

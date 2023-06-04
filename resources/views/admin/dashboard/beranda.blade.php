@@ -52,9 +52,9 @@
                 ?>
                 <div class="col-3">
                   @if ($report->feedback == 1)
-                  <div class="callout callout-danger">  
+                  <div class="callout callout-warning">  
                   @elseif ($report->feedback == 2)
-                  <div class="callout callout-warning">
+                  <div class="callout callout-info">
                   @elseif ($report->feedback == 3)
                   <div class="callout callout-success">
                   @endif
@@ -81,7 +81,7 @@
                 </div>
                 @endforeach
                 <div class="col-3">
-                  <div class="callout callout-info">
+                  <div class="callout callout-secondary">
                     <h5>Total Survey</h5>
   
                     <h1>{{ $jumlah }}</h1>
@@ -192,16 +192,16 @@
         labels: label_data,
         datasets: [{
           label: '# of Survey',
-          data: [feedback_cukup_puas, feedback_puas, feedback_sangat_puas],
+          data: [feedback_sangat_puas, feedback_puas, feedback_cukup_puas],
           backgroundColor: [
-            'rgba(255, 159, 64, 0.2)',
+            'rgba(75, 192, 192, 0.2)',
             'rgba(54, 162, 235, 0.2)',
-            'rgba(75, 192, 192, 0.2)'
+            'rgba(255, 159, 64, 0.2)'
           ],
           borderColor: [
-            'rgba(255, 159, 64, 1)',
+            'rgba(75, 192, 192, 1)',
             'rgba(54, 162, 235, 1)',
-            'rgba(75, 192, 192, 1)'
+            'rgba(255, 159, 64, 1)'
           ],
           borderWidth: 1
         }]
@@ -227,16 +227,16 @@
         labels: label,
         datasets: [{
           label: '# of Survey',
-          data: [feedback_cukup_puas, feedback_puas, feedback_sangat_puas],
+          data: [feedback_sangat_puas, feedback_puas, feedback_cukup_puas],
           backgroundColor: [
-            'rgba(255, 159, 64, 0.2)',
+            'rgba(75, 192, 192, 0.2)',
             'rgba(54, 162, 235, 0.2)',
-            'rgba(75, 192, 192, 0.2)'
+            'rgba(255, 159, 64, 0.2)'
           ],
           borderColor: [
-            'rgba(255, 159, 64, 1)',
+            'rgba(75, 192, 192, 1)',
             'rgba(54, 162, 235, 1)',
-            'rgba(75, 192, 192, 1)'
+            'rgba(255, 159, 64, 1)'
           ],
           borderWidth: 1
         }]

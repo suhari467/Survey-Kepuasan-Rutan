@@ -4,7 +4,11 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>{{ $title }} | Survey Kepuasan Pelanggan</title>
-  <link rel="icon" href="{{ asset('assets/img/logo-pengayoman.png') }}">
+  @if($instansi)
+    <link rel="icon" href="{{ asset('storage/instansi').'/'.$instansi->logo }}">
+  @else
+    <link rel="icon" href="{{ asset('assets/img/logo.png') }}">
+  @endif
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">

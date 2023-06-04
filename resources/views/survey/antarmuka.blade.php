@@ -21,7 +21,7 @@
   </h3>
   <h1 class="mt-4 text-center"><b>{{ $question->pertanyaan }}</b></h1>
   <hr>
-  <h4 class="mt-4 text-center"><b> Silahkan pilih salah satu dibawah ini </b></h4>
+  <h3 class="mt-4 text-center"><b> Silahkan pilih salah satu dibawah ini </b></h3>
   </div>
   <meta name="csrf-token" content="{{ csrf_token() }}">
   @foreach($feedback as $use)
@@ -46,7 +46,7 @@
               </h3>
             </div>
         </div>
-        <h5> <b>{{ $use['name'] }} </b> </h5>
+        <h1> <b>{{ $use['name'] }} </b> </h1>
     </div>
   @endforeach
   </div>

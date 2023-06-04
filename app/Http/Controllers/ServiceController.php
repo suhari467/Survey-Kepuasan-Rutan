@@ -129,9 +129,9 @@ class ServiceController extends Controller
      */
     public function destroy(Service $service)
     {
-        $count_pertanyaan = $service->questions->count();
-        if($count_pertanyaan>0){
-            return redirect('/layanan')->with('error', 'Data Layanan tidak dapat dihapus, dikarenakan ada pertanyaan terkait');
+        $count_surveys = $service->surveys->count();
+        if($count_surveys>0){
+            return redirect('/layanan')->with('error', 'Data Layanan tidak dapat dihapus, dikarenakan ada survey terkait');
         }
 
         $destroy = Service::destroy($service->id);

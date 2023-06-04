@@ -4,7 +4,11 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>{{ $title }} | Survey Kepuasan Pelanggan</title>
-  <link rel="icon" href="{{ asset('assets/img/logo.png') }}">
+  @if(session()->has('logo'))
+    <link rel="icon" href="{{ asset('storage/instansi').'/'.session()->get('logo') }}">
+  @else
+    <link rel="icon" href="{{ asset('assets/img/logo.png') }}">
+  @endif
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -35,8 +39,11 @@
 
     <!-- Preloader -->
     <div class="preloader flex-column justify-content-center align-items-center">
-      <img class="animation__shake" src="{{ asset('assets/img/logo.png') }}" alt="AdminLTELogo" width="150">
-      {{-- <img class="animation__shake" src="{{ asset('assets/brand/logo-panjang-gelap.png') }}" alt="AdminLTELogo"> --}}
+      @if(session()->has('logo'))
+        <img class="animation__shake" src="{{ asset('storage/instansi').'/'.session()->get('logo') }}" alt="logo-instansi" width="150">
+      @else
+        <img class="animation__shake" src="{{ asset('assets/img/logo.png') }}" alt="AdminLTELogo" width="150">
+      @endif
     </div>
 
     {{-- Navbar --}}

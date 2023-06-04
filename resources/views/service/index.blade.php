@@ -41,7 +41,6 @@
                   <tr>
                     <th>No.</th>
                     <th>Nama Layanan</th>
-                    <th>Banyak Pertanyaan</th>
                     <th>Action</th>
                   </tr>
                   </thead>
@@ -51,9 +50,7 @@
                   <tr>
                     <td>{{ $loop->iteration }}</td>
                     <td>{{ $service->name }}</td>
-                    <td>{{ $service->questions->count() }}</td>
                     <td>
-                      <a href="{{ url('layanan') }}/{{ $service->id }}" class="btn btn-sm btn-primary"><span class="fas fa-info"></span> Info </a>
                       <a href="{{ url('layanan') }}/{{ $service->id }}/edit" class="btn btn-sm btn-success"><span class="fas fa-edit"></span> Edit </a>
                       <form action="{{ url('layanan') }}/{{ $service->id }}" id="hapusForm-{{ $service->id }}" method="post" class="d-inline">
                         @method('delete')

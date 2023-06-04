@@ -38,19 +38,6 @@
                 @csrf
                 <div class="card-body">
                   <div class="form-group">
-                    <label for="layanan_id">Pilih Layanan</label>
-                    <select name="layanan_id" id="layanan_id" class="form-control @error('layanan_id') is-invalid @enderror">
-                      @foreach ($services as $service)
-                      <option value="{{ $service->id }}" {{ $question->service_id == $service->id ? 'selected' : '' }}>{{ $service->name }}</option>
-                      @endforeach
-                    </select>
-                    @error('pertanyaan')
-                        <div class="invalid-feedback">
-                            {{ $message }}
-                        </div>
-                    @enderror
-                  </div>
-                  <div class="form-group">
                     <label for="pertanyaan">Pertanyaan</label>
                     <input type="text" name="pertanyaan" id="pertanyaan" class="form-control @error('pertanyaan') is-invalid @enderror" placeholder="Pertanyaan Survey" value="{{ old('pertanyaan', $question->pertanyaan) }}">
                     @error('pertanyaan')

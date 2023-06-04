@@ -52,9 +52,13 @@
                 </div>
                 <div class="col-6">
                   <div class="form-group">
-                    <label for="service_name">Layanan</label>
-                    <input type="text" id="service_name" class="form-control @error('service_name') is-invalid @enderror" placeholder="(Nama Layanan)" readonly>
-                    @error('service_name')
+                    <label for="service_id">Layanan</label>
+                    <select name="service_id" id="service_id" class="form-control @error('service_id') is-invalid @enderror">
+                      @foreach ($services as $service)
+                          <option value="{{ $service->id }}">{{ $service->name }}</option>
+                      @endforeach
+                    </select>
+                    @error('service_id')
                         <div class="invalid-feedback">
                             {{ $message }}
                         </div>
@@ -289,30 +293,6 @@
     });
   }
 
-  $('#question_id').on('click', function(){
-    var question_id = $(this).val();
-
-    getLayanan(question_id);
-  });
-
-  function getLayanan(question_id){
-    var question_id = question_id;
-    $.ajax({
-      url: "{{ route('get_layanan_laporan') }}",
-      method: 'post',
-      data: {
-        _token: '{{ csrf_token() }}',
-        question_id: question_id
-      },
-      dataType: 'json',
-      success: function(data){
-        var service_name = data.service.name;
-
-        $('#service_name').val(service_name);
-      }
-    });
-  }
-
   $('#cari-data-laporan').on('click', function(){
     $('#card-filter').append('<div class="overlay" id="overlay"><i class="fas fa-3x fa-sync-alt fa-spin"></i></div>');
     
@@ -323,6 +303,7 @@
     $('#card-kritik').hide();
 
     var question_id = $('#question_id').val();
+    var service_id = $('#service_id').val();
     var tanggal_awal = $('#tanggal_awal').val();
     var tanggal_akhir = $('#tanggal_akhir').val();
 
@@ -332,6 +313,7 @@
         data: {
           _token: '{{ csrf_token() }}',
           question_id: question_id,
+          service_id: service_id,
           tanggal_awal: tanggal_awal,
           tanggal_akhir: tanggal_akhir
         },
@@ -348,7 +330,7 @@
             var tanggal = tanggal1+" s/d "+tanggal2;
           }
 
-          var layanan = data.question.service.name;
+          var layanan = data.service.name;
           var pertanyaan = data.question.pertanyaan;
           var responden = data.count_survey;
           var responden_kritik = data.count_kritik_survey;
@@ -438,16 +420,16 @@
         labels: label_data,
         datasets: [{
           label: '# of Survey',
-          data: [feedback_cukup_puas, feedback_puas, feedback_sangat_puas],
+          data: [feedback_sangat_puas, feedback_puas, feedback_cukup_puas],
           backgroundColor: [
-            'rgba(255, 159, 64, 0.2)',
+            'rgba(75, 192, 192, 0.2)',
             'rgba(54, 162, 235, 0.2)',
-            'rgba(75, 192, 192, 0.2)'
+            'rgba(255, 159, 64, 0.2)'
           ],
           borderColor: [
-            'rgba(255, 159, 64, 1)',
+            'rgba(75, 192, 192, 1)',
             'rgba(54, 162, 235, 1)',
-            'rgba(75, 192, 192, 1)'
+            'rgba(255, 159, 64, 1)'
           ],
           borderWidth: 1
         }]
@@ -473,16 +455,16 @@
         labels: label,
         datasets: [{
           label: '# of Survey',
-          data: [feedback_cukup_puas, feedback_puas, feedback_sangat_puas],
+          data: [feedback_sangat_puas, feedback_puas, feedback_cukup_puas],
           backgroundColor: [
-            'rgba(255, 159, 64, 0.2)',
+            'rgba(75, 192, 192, 0.2)',
             'rgba(54, 162, 235, 0.2)',
-            'rgba(75, 192, 192, 0.2)'
+            'rgba(255, 159, 64, 0.2)'
           ],
           borderColor: [
-            'rgba(255, 159, 64, 1)',
+            'rgba(75, 192, 192, 1)',
             'rgba(54, 162, 235, 1)',
-            'rgba(75, 192, 192, 1)'
+            'rgba(255, 159, 64, 1)'
           ],
           borderWidth: 1
         }]

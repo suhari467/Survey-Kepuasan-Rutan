@@ -40,9 +40,7 @@
                   <thead>
                   <tr>
                     <th>No.</th>
-                    <th>Layanan</th>
                     <th>Pertanyaan</th>
-                    <th>Banyak Survey</th>
                     <th>Action</th>
                   </tr>
                   </thead>
@@ -51,11 +49,8 @@
                   @foreach($questions as $question)
                   <tr>
                     <td>{{ $loop->iteration }}</td>
-                    <td>{{ $question->service->name }}</td>
                     <td>{{ $question->pertanyaan }}</td>
-                    <td>{{ $question->surveys->count() }}</td>
                     <td>
-                      <a href="{{ url('pertanyaan') }}/{{ $question->id }}" class="btn btn-sm btn-primary"><span class="fas fa-info"></span> Info </a>
                       <a href="{{ url('pertanyaan') }}/{{ $question->id }}/edit" class="btn btn-sm btn-success"><span class="fas fa-edit"></span> Edit </a>
                       <form action="{{ url('pertanyaan') }}/{{ $question->id }}" id="hapusForm-{{ $question->id }}" method="post" class="d-inline">
                         @method('delete')

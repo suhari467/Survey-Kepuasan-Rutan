@@ -34,7 +34,6 @@ class QuestionController extends Controller
     public function create()
     {
         $data = [
-            'services' => Service::get(),
             'title' => 'Tambah Pertanyaan',
             'slug' => 'question'
         ];
@@ -51,12 +50,10 @@ class QuestionController extends Controller
     public function store(Request $request)
     {
         $validate = $request->validate([
-            'layanan_id' => 'required|numeric',
             'pertanyaan' => 'required|max:255'
         ]);
 
         $data = [
-            'service_id' => $validate['layanan_id'],
             'pertanyaan' => $validate['pertanyaan']
         ];
 
@@ -83,8 +80,6 @@ class QuestionController extends Controller
             'question' => $question
         ];
 
-        // ddd($data);
-
         return view('question.show', $data);
     }
 
@@ -99,7 +94,6 @@ class QuestionController extends Controller
         $data = [
             'title' => 'Edit Pertanyaan',
             'slug' => 'question',
-            'services' => Service::get(),
             'question' => $question
         ];
 
@@ -116,12 +110,10 @@ class QuestionController extends Controller
     public function update(Request $request, Question $question)
     {
         $validate = $request->validate([
-            'layanan_id' => 'required|numeric',
             'pertanyaan' => 'required|max:255'
         ]);
 
         $data = [
-            'service_id' => $validate['layanan_id'],
             'pertanyaan' => $validate['pertanyaan']
         ];
 
@@ -144,7 +136,7 @@ class QuestionController extends Controller
     {
         $count_surveys = $question->surveys->count();
         if($count_surveys>0){
-            return redirect('/pertanyaan')->with('error', 'Data pertanyaan tidak dapat dihapus, dikarenakan ada pertanyaan terkait');
+            return redirect('/pertanyaan')->with('error', 'Data pertanyaan tidak dapat dihapus, dikarenakan ada survey terkait');
         }
 
         $destroy = Question::destroy($question->id);

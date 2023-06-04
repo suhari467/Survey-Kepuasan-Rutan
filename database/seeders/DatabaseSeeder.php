@@ -41,7 +41,6 @@ class DatabaseSeeder extends Seeder
         ]);
 
         Question::create([
-            'service_id' => 1,
             'pertanyaan' => 'Apakah pendapat anda tentang layanan ini ?'
         ]);
 

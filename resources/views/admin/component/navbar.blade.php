@@ -13,6 +13,11 @@
           Contact
         </a>
       </li>
+      <li class="nav-item d-none d-sm-inline-block">
+        <a href="{{ url('/antarmuka/layanan') }}" class="nav-link" target="_blank">
+          Antarmuka Survey
+        </a>
+      </li>
     </ul>
 
     <!-- Right navbar links -->
