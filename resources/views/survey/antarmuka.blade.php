@@ -46,7 +46,7 @@
               </h3>
             </div>
         </div>
-        <h1> <b>{{ $use['name'] }} </b> </h1>
+        <h1> <b>{{ strtoupper($use['name']) }} </b> </h1>
     </div>
   @endforeach
   </div>

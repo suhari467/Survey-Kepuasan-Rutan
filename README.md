@@ -7,7 +7,7 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
-## About Laravel
+## Cara Installasi
 
 Berikut adalah cara installasi untuk menjalankan survey kepuasan pelanggan, bisa di clone ataupun di download langsung. Setelah berhasil maka masuk ke terminal, dan masuk ke direktory folder
 
