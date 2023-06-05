@@ -70,42 +70,44 @@
   <!-- Navbar -->
   <div class="row">
     <div class="col-lg-12">
-      <nav class="navbar navbar-expand navbar-warning">
-        <!-- Left navbar links -->
-        <ul class="navbar-nav">
-          <li class="nav-item d-none d-sm-inline-block">
-            <div class="flex-container">
-              @if ($instansi->logo)
-              <img src="{{ url('storage/instansi') }}/{{ $instansi->logo }}" alt="{{ $instansi->logo }}" class="p-2 ml-2 logo1" width="110">
-              @else
-              <img src="{{ url('assets/img/blank-profile.jpg') }}" alt="Logo" class="p-2 ml-2 logo1" width="110">
-              @endif
-              <div class="nav-link align-items-center"> 
-                <h1 class="display-4">
-                  <b>{{ $instansi->nama_instansi }}</b>
-                </h1>
-                <h5>{{ $instansi->alamat_instansi }}</h5>
+      <small>
+        <nav class="navbar navbar-expand navbar-warning">
+          <!-- Left navbar links -->
+          <ul class="navbar-nav">
+            <li class="nav-item d-none d-sm-inline-block">
+              <div class="flex-container">
+                @if ($instansi->logo)
+                <img src="{{ url('storage/instansi') }}/{{ $instansi->logo }}" alt="{{ $instansi->logo }}" class="p-2 ml-2 logo1" width="110">
+                @else
+                <img src="{{ url('assets/img/blank-profile.jpg') }}" alt="Logo" class="p-2 ml-2 logo1" width="110">
+                @endif
+                <div class="nav-link align-items-center"> 
+                  <h1 class="display-4">
+                    <b>{{ $instansi->nama_instansi }}</b>
+                  </h1>
+                  <h5>{{ $instansi->alamat_instansi }}</h5>
+                </div>
               </div>
-            </div>
-          </li>
-        </ul>
-
-        <!-- Right navbar links -->
-        <ul class="navbar-nav ml-auto">
-          <li class="nav-item d-none d-sm-inline-block">
-            <div class="nav-link">
-              <h4>
-                <b><div id="timer"></div></b>
-              </h4>
-            </div>
-          </li>
-          <li class="nav-item d-none d-sm-inline-block">
-            <a class="nav-link" data-widget="fullscreen" href="#" role="button">
-              <h2><i class="fas fa-expand-arrows-alt"></i></h2>
-            </a>
-          </li>
-        </ul>
-      </nav>
+            </li>
+          </ul>
+  
+          <!-- Right navbar links -->
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item d-none d-sm-inline-block">
+              <div class="nav-link">
+                <h4>
+                  <b><div id="timer"></div></b>
+                </h4>
+              </div>
+            </li>
+            <li class="nav-item d-none d-sm-inline-block">
+              <a class="nav-link" data-widget="fullscreen" href="#" role="button">
+                <h2><i class="fas fa-expand-arrows-alt"></i></h2>
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </small>
     </div>
   </div>
 
