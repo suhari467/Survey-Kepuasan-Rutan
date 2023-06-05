@@ -11,7 +11,7 @@
     @if (session()->has('error'))
       <div id="session" data-type="error" data-session=" {{ session('error') }}"></div>
     @endif
-  <h3 class="mt-4 text-center">
+  <h3 class="mt-2 text-center">
     <a class="text-decoration-none" id="signout">
       Layanan: {{ $service->name }}
     </a>
@@ -19,9 +19,9 @@
     @csrf
     </form>
   </h3>
-  <h1 class="mt-4 text-center"><b>{{ $question->pertanyaan }}</b></h1>
+  <h1 class="mt-1 text-center"><b>{{ $question->pertanyaan }}</b></h1>
   <hr>
-  <h3 class="mt-4 text-center"><b> Silahkan pilih salah satu dibawah ini </b></h3>
+  <h3 class="text-center"><b> Silahkan pilih salah satu dibawah ini </b></h3>
   </div>
   <meta name="csrf-token" content="{{ csrf_token() }}">
   @foreach($feedback as $use)
