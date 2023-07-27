@@ -19,6 +19,7 @@ Berikut adalah cara installasi untuk menjalankan survey kepuasan pelanggan, bisa
 - Ketik "php artisan key:generate", tunggu sampe selesai
 - Ketik "php artisan migrate --seed", tunggu sampe selesai.
 - Ketik "php artisan storage:link", tunggu sampe selesai.
+- Ketik "php artisan serve", untuk menjalankan server laravel.
 
 Setelah selesai, coba buka URL untuk membuka aplikasi tersebut. Jika berhasil maka akan diarahkan ke tampilan login. untuk awal user: admin@gmail.com dan password: password
 

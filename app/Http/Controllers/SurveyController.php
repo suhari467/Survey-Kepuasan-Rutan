@@ -55,12 +55,26 @@ class SurveyController extends Controller
 
     public function storeSurvey(Request $request)
     {
-        $validate = $request->validate([
+        $rules = [
             'service_id' => 'required|numeric',
             'question_id' => 'required|numeric',
             'feedback' => 'required|numeric',
-            'kritik' => 'nullable',
-        ]);
+        ];
+
+        if($request->feedback != 3){
+            $rules['kritik'] = 'required';
+            if($request->kritik == null){
+                $data = [
+                    'type' => 'error',
+                    'message' => 'Survey gagal dibuat, kritik wajib di isi'
+                ];
+                return json_encode($data);
+            }
+        }else {
+            $rules['kritik'] = 'nullable';
+        }
+
+        $validate = $request->validate($rules);
 
         $create = Survey::create($validate);
 

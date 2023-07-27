@@ -74,11 +74,11 @@
         <div class="row">
           <div class="col-md-12">
             <div class="form-group">
-              <label for="kritik-{{ $use['id'] }}">Kritik (tidak wajib)</label>
+              <label for="kritik-{{ $use['id'] }}">Kritik {{ $use['id']!=3 ? '(wajib)' : '(tidak wajib)' }}</label>
               <input type="hidden" name="service_id" value="{{ $service->id }}">
               <input type="hidden" name="question_id" value="{{ $question->id }}">
               <input type="hidden" name="feedback" id="feedback-{{ $use['id'] }}" value="{{ $use['id'] }}">
-              <textarea class="form-control @error('kritik') is-invalid @enderror" name="kritik" id="kritik-{{ $use['id'] }}" cols="30" rows="3" placeholder="Kritik atau masukan anda tentang layanan ini">{{ old('kritik') }}</textarea>
+              <textarea class="form-control @error('kritik') is-invalid @enderror" name="kritik" id="kritik-{{ $use['id'] }}" cols="30" rows="3" placeholder="Kritik atau masukan anda tentang layanan ini {{ $use['id']!=3 ? 'Wajib di isi' : '' }}" {{ $use['id']!=3 ? 'required=required' : '' }}>{{ old('kritik') }}</textarea>
               @error('kritik')
                   <div class="invalid-feedback">
                       {{ $message }}
@@ -119,6 +119,10 @@
     }
   }
 
+  function insertAfter(referenceNode, newNode) {
+    referenceNode.parentNode.insertBefore(newNode, referenceNode.nextSibling);
+  }
+
   $("#signout").on("click", function() {
     Swal.fire({
       title: 'Perhatian!',
@@ -149,8 +153,31 @@
       $('#submit-kirim-{{ $use["id"] }}').on('click', function(){
           var kritik = $('#kritik-{{ $use["id"] }}').val();
           var feedback = $('#feedback-{{ $use["id"] }}').val();
+
+          if(feedback != 3){
+            if(kritik == ''){
+              var invalid = document.getElementById('kritik-{{ $use["id"] }}');
+              invalid.classList.add("is-invalid");
+
+              var check = $('div').hasClass('invalid-kritik-{{ $use["id"] }}');
+              if(!check){
+                var warning = document.createElement("div");
+                warning.classList.add("invalid-feedback");
+                warning.classList.add('invalid-kritik-{{ $use["id"] }}');
+                warning.innerHTML = "Tidak boleh kosong, harus di isi";
+
+                insertAfter(invalid, warning);
+              }
+            }else{
+              var invalid = document.getElementById('kritik-{{ $use["id"] }}');
+              invalid.classList.remove("is-invalid");
+              
+              submitForm(kritik, feedback);
+            }
+          }else{
+            submitForm(kritik, feedback);
+          }
           
-          submitForm(kritik, feedback);
       });
 
       $('#modal-kritik-{{ $use["id"] }}').on('hidden.bs.modal', function () {
@@ -189,7 +216,7 @@
           SwAlt(pesan, tipe, judul);
 
         }
-      }).fail(function(){
+      }).fail(function(data){
           var tipe = 'error';
           var pesan = 'Survey gagal disimpan, silahkan reload halaman atau buat akses kembali';
           var judul = tipe=='success' ? 'Berhasil' : 'Gagal';
