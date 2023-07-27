@@ -62,11 +62,17 @@ class SurveyController extends Controller
         ];
 
         if($request->feedback != 3){
-            $rules['kritik'] = 'required';
+            $rules['kritik'] = 'required|min:10';
             if($request->kritik == null){
                 $data = [
                     'type' => 'error',
                     'message' => 'Survey gagal dibuat, kritik wajib di isi'
+                ];
+                return json_encode($data);
+            }else if(strlen($request->kritik) <= 10){
+                $data = [
+                    'type' => 'error',
+                    'message' => 'Survey gagal dibuat, kritik wajib di isi (minimal 10 karakter)'
                 ];
                 return json_encode($data);
             }

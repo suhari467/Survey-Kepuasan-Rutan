@@ -216,7 +216,7 @@
           SwAlt(pesan, tipe, judul);
 
         }
-      }).fail(function(data){
+      }).fail(function(){
           var tipe = 'error';
           var pesan = 'Survey gagal disimpan, silahkan reload halaman atau buat akses kembali';
           var judul = tipe=='success' ? 'Berhasil' : 'Gagal';
