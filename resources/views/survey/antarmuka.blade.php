@@ -119,6 +119,21 @@
     }
   }
 
+  function SwAltErr(data, type, title, question_id, service_id){
+    if(data){
+      Swal.fire({
+        title: title,
+        text: data,
+        icon: type,
+        confirmButtonText: 'Selesai'
+      }).then((result) => {
+        if(result.value===true){
+          window.location.href = "{{ url('antarmuka/survey') }}?layanan_id="+service_id+"&pertanyaan_id="+question_id;
+        }
+      })
+    }
+  }
+
   function insertAfter(referenceNode, newNode) {
     referenceNode.parentNode.insertBefore(newNode, referenceNode.nextSibling);
   }
@@ -133,7 +148,7 @@
       cancelButtonColor: '#d33',
       confirmButtonText: 'Lanjut'
     }).then((result) => { 
-        if (result.value===true) { 
+        if(result.value===true) { 
           $('#signoutForm').submit() // this submits the form 
         } 
     }) 
@@ -218,9 +233,9 @@
         }
       }).fail(function(){
           var tipe = 'error';
-          var pesan = 'Survey gagal disimpan, silahkan reload halaman atau buat akses kembali';
+          var pesan = 'Survey gagal disimpan, silahkan mengisi kembali survey.';
           var judul = tipe=='success' ? 'Berhasil' : 'Gagal';
-          SwAlt(pesan, tipe, judul);
+          SwAltErr(pesan, tipe, judul, question_id, service_id);
 
       }).always(function() {
           $('#modal-kritik-'+feedback).modal('hide');
