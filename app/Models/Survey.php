@@ -24,7 +24,7 @@ class Survey extends Model
 			],
 			[
 				'id' => 1,
-				'name' => 'Cukup Puas'
+				'name' => 'Tidak Puas'
 			]
 		];
 

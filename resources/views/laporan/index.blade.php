@@ -352,7 +352,7 @@
               }else if(items.feedback == 2){
                 var cat = 'Puas';
               }else{
-                var cat = 'Cukup Puas';
+                var cat = 'Tidak Puas';
               }
   
               $('#table-laporan').find('tbody').append(
@@ -374,7 +374,7 @@
               }else if(items.feedback == 2){
                 var cat = 'Puas';
               }else{
-                var cat = 'Cukup Puas';
+                var cat = 'Tidak Puas';
               }
   
               $('#table-kritik').find('tbody').append(
